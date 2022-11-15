@@ -104,9 +104,7 @@ include vendor/cipher/config/lineage_sdk_common.mk
 endif
 
 # TWRP
-ifeq ($(WITH_TWRP),true)
 include vendor/cipher/config/twrp.mk
-endif
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -262,24 +260,20 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 ## Cipher Build ID Config End
 
 # Define Official & Unofficial Builds
-ifeq ($(CIPHER_OFFICIAL), true)
    # $(call inherit-product, vendor/apps/apps.mk)
     CIPHER_BUILD := OFFICIAL
     PRODUCT_PACKAGES += \
     Updater \
     CipherShades \
     CipherWidget
-endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
   ro.cipher.status=$(CIPHER_BUILD)
 
 # Gapps
-CIPHER_GAPPS ?= false
-ifeq ($(CIPHER_GAPPS), true)
+CIPHER_GAPPS ?= true
     $(call inherit-product, vendor/partner_gms/products/gms.mk)
     CIPHER_BUILD_ZIP_TYPE := GAPPS
-endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
   ro.cipher.ziptype=$(CIPHER_BUILD_ZIP_TYPE)
@@ -298,11 +292,8 @@ ifeq ($(CIPHER_GO), true)
 endif
 
 # ExactCalculator
-ifeq ($(CIPHER_GAPPS), false)
 PRODUCT_PACKAGES += \
     ExactCalculator
-endif
-## Cipher Versioning Vars End
 
 
 # Add Face Unlock for Cipher
@@ -324,11 +315,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
   ro.cipher.build.date=$(shell LC_ALL=en_US.utf8 date "+%d_%B_%Y") \
 
 # Blur
-ifeq ($(CIPHER_BLUR), true)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sf.blurs_are_expensive=1 \
     ro.surface_flinger.supports_background_blur=1
-endif
 
 # One Handed Mode
 PRODUCT_PROPERTY_OVERRIDES += \
