@@ -261,7 +261,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Define Official & Unofficial Builds
    # $(call inherit-product, vendor/apps/apps.mk)
-    CIPHER_BUILD := OFFICIAL
     PRODUCT_PACKAGES += \
     Updater \
     CipherShades \
