@@ -104,7 +104,7 @@ include vendor/cipher/config/lineage_sdk_common.mk
 endif
 
 # TWRP
-include vendor/cipher/config/twrp.mk
+#include vendor/cipher/config/twrp.mk
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
